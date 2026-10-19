@@ -1,0 +1,59 @@
+python/Makefile
+  s_c6f9e9eeb1d86e::t_e2fe5392165a19 1
+  s_c6f9e9eeb1d86e::t_4b66519805e796 2-4
+  s_c6f9e9eeb1d86e::t_4541e86501e25d 5-15
+python/README.md
+  s_c6f9e9eeb1d86e::t_d279618987b169 51-62
+  s_c6f9e9eeb1d86e::t_c3f6382bd0f691 48-50
+  s_c6f9e9eeb1d86e::t_f38d67c085241f 63-65
+  s_c6f9e9eeb1d86e::t_b94e4eab818cfe 1-47,66-110
+python/.env.example
+  s_c6f9e9eeb1d86e::t_eb92bd7de44cbf 1-15
+python/.gitignore
+  s_c6f9e9eeb1d86e::t_6dd6b2ea690c1e 1-8
+python/app/__init__.py
+  s_c6f9e9eeb1d86e::t_5ec2abc8116dcc 1
+python/app/env.py
+  s_c6f9e9eeb1d86e::t_a419cc51bf52d0 1-52
+python/app/server.py
+  s_c6f9e9eeb1d86e::t_41b5518fd9f022 1-68
+python/app/support_agent.py
+  s_c6f9e9eeb1d86e::t_63b3f173076117 1-151
+python/app/support_data.py
+  s_c6f9e9eeb1d86e::t_a89e6b2ad96f27 1-130
+python/app/tools.py
+  s_c6f9e9eeb1d86e::t_c0f6d68c740b15 1-74
+python/pyproject.toml
+  s_c6f9e9eeb1d86e::t_b4dff9c6f0da5b 1-13
+python/scripts/__init__.py
+  s_c6f9e9eeb1d86e::t_725252d221e98a 1
+python/scripts/publish_prompt.py
+  s_c6f9e9eeb1d86e::t_003c38ba4cc6ae 1-12
+python/scripts/run_dataset.py
+  s_c6f9e9eeb1d86e::t_1e1274d815206a 1-12
+python/scripts/seed_dataset.py
+  s_c6f9e9eeb1d86e::t_101b7da72e584f 1-12
+python/uv.lock
+  s_c6f9e9eeb1d86e::t_322551e6ede6f1 1-967
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b29e5f7243ad105a454ec6eb6e6832a33f9ae723",
+  "prompts": {},
+  "humans": {
+    "h_afd9637af37b4a": {
+      "author": "devanshbharadwaj-sp1 <devansh.bharadwaj@neurowyzr.com>"
+    }
+  },
+  "sessions": {
+    "s_c6f9e9eeb1d86e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "47d975d9-6439-49fd-96cf-11e3bcd8596c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "devanshbharadwaj-sp1 <devansh.bharadwaj@neurowyzr.com>"
+    }
+  }
+}
