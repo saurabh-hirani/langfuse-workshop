@@ -1,0 +1,25 @@
+python/app/tools.py
+  s_c6f9e9eeb1d86e::t_c0f6d68c740b15 2-74
+python/app/support_data.py
+  s_c6f9e9eeb1d86e::t_a89e6b2ad96f27 2-130
+python/app/support_agent.py
+  s_c6f9e9eeb1d86e::t_63b3f173076117 2-151
+python/app/server.py
+  s_c6f9e9eeb1d86e::t_41b5518fd9f022 2-68
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e6c159456012df38fbce5f26bdefceb4889ef6e2",
+  "prompts": {},
+  "sessions": {
+    "s_c6f9e9eeb1d86e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "47d975d9-6439-49fd-96cf-11e3bcd8596c",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "devanshbharadwaj-sp1 <devansh.bharadwaj@neurowyzr.com>"
+    }
+  }
+}
