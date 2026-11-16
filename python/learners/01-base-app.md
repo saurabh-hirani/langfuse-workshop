@@ -73,4 +73,4 @@ apps, then restart `make app`.
 
 ## End state
 
-You are ready to start `02-tracing`.
+You are ready to start [`02-tracing`](02-tracing.md).

@@ -103,8 +103,17 @@ onward.
 - Smoke checks, with the server running in another terminal:
 
   ```bash
-  make health       # {"ok": true, "provider": "openai", "tracingConfigured": false}
+  make health       # {"ok": true, "provider": "openai", "tracingConfigured": true}
   make chat         # Bluetooth question -> numbered steps + usedTools
+  ```
+
+  `tracingConfigured` is `true` when the Langfuse keys are set, and `false` when
+  they are not. Without keys, the app logs one warning and still answers.
+
+- Tracing check (from py-02), with the server running in another terminal:
+
+  ```bash
+  make verify-tracing   # sends one chat turn and checks its trace in Langfuse
   ```
 
 `make chat` is the end-to-end test: it sends a real question and should return
@@ -136,9 +145,11 @@ only matters if you maintain both; a Python reader can ignore it.)
 | `app/tools.py` | `src/server/tools.ts` | Tool JSON schemas and `execute_tool` |
 | `app/support_agent.py` | `src/server/support-agent.ts` | System prompt and the tool-calling loop (max 6 turns) |
 | `app/server.py` | `src/server/index.ts` | FastAPI routes and web client serving |
+| `app/tracing.py` | `src/server/index.ts` (span processor setup) | Langfuse client startup and flush on shutdown |
 | `scripts/publish_prompt.py` | `scripts/publish-prompt.ts` | Stub until py-03 |
 | `scripts/seed_dataset.py` | `scripts/seed-dataset.ts` | Stub until py-05 |
 | `scripts/run_dataset.py` | `scripts/run-dataset.ts` | Stub until py-06 |
+| `scripts/verify_tracing.py` | none | Checks the py-02 trace shape in Langfuse |
 
 ## Checkpoints
 

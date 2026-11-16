@@ -163,4 +163,4 @@ make chat     # a Bluetooth answer with numbered steps and usedTools
 ## End state
 
 Your environment is ready. Skim [`01-base-app`](01-base-app.md) for a tour of the
-app, then go to `02-tracing` for the first code changes.
+app, then go to [`02-tracing`](02-tracing.md) for the first code changes.
