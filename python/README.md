@@ -1,4 +1,4 @@
-# Dad IT Support Agent — Python + FastAPI track
+# Dad IT Support Agent: Python + FastAPI track
 
 A small FastAPI app: an AI agent that helps Dad with his iPhone. It answers from
 a fixed Dad profile and a local how-to library, using OpenAI tool-calling. The
@@ -6,8 +6,10 @@ later phases add Langfuse tracing, prompt management, datasets, and evaluation.
 
 It reads shared workshop assets (`data/`, `docs/`, and a prebuilt web client)
 from the repository root, so you run everything from the `python/` directory with
-nothing to copy in. The learner lessons in [`../docs/`](../docs/) walk through the
-concepts; this README is all you need to install, configure, and run the app.
+nothing to copy in. The Python learner lessons in [`learners/`](./learners/) walk
+through each workshop step (they follow the shared lessons in
+[`../docs/learner/`](../docs/learner/)); this README is all you need to install,
+configure, and run the app.
 
 ## Install
 
