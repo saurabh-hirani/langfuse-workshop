@@ -1,4 +1,4 @@
-# Dad IT Support Agent — Python + FastAPI track
+# Dad IT Support Agent: Python + FastAPI track
 
 A small FastAPI app: an AI agent that helps Dad with his iPhone. It answers from
 a fixed Dad profile and a local how-to library, using OpenAI tool-calling. The
@@ -6,8 +6,10 @@ later phases add Langfuse tracing, prompt management, datasets, and evaluation.
 
 It reads shared workshop assets (`data/`, `docs/`, and a prebuilt web client)
 from the repository root, so you run everything from the `python/` directory with
-nothing to copy in. The learner lessons in [`../docs/`](../docs/) walk through the
-concepts; this README is all you need to install, configure, and run the app.
+nothing to copy in. The Python learner lessons in [`learners/`](./learners/) walk
+through each workshop step (they follow the shared lessons in
+[`../docs/learner/`](../docs/learner/)); this README is all you need to install,
+configure, and run the app.
 
 ## Install
 
@@ -101,8 +103,17 @@ onward.
 - Smoke checks, with the server running in another terminal:
 
   ```bash
-  make health       # {"ok": true, "provider": "openai", "tracingConfigured": false}
+  make health       # {"ok": true, "provider": "openai", "tracingConfigured": true}
   make chat         # Bluetooth question -> numbered steps + usedTools
+  ```
+
+  `tracingConfigured` is `true` when the Langfuse keys are set, and `false` when
+  they are not. Without keys, the app logs one warning and still answers.
+
+- Tracing check (from py-02), with the server running in another terminal:
+
+  ```bash
+  make verify-tracing   # sends one chat turn and checks its trace in Langfuse
   ```
 
 `make chat` is the end-to-end test: it sends a real question and should return
@@ -134,9 +145,11 @@ only matters if you maintain both; a Python reader can ignore it.)
 | `app/tools.py` | `src/server/tools.ts` | Tool JSON schemas and `execute_tool` |
 | `app/support_agent.py` | `src/server/support-agent.ts` | System prompt and the tool-calling loop (max 6 turns) |
 | `app/server.py` | `src/server/index.ts` | FastAPI routes and web client serving |
+| `app/tracing.py` | `src/server/index.ts` (span processor setup) | Langfuse client startup and flush on shutdown |
 | `scripts/publish_prompt.py` | `scripts/publish-prompt.ts` | Stub until py-03 |
 | `scripts/seed_dataset.py` | `scripts/seed-dataset.ts` | Stub until py-05 |
 | `scripts/run_dataset.py` | `scripts/run-dataset.ts` | Stub until py-06 |
+| `scripts/verify_tracing.py` | none | Checks the py-02 trace shape in Langfuse |
 
 ## Checkpoints
 
