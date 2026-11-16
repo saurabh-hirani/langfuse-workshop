@@ -1,19 +1,30 @@
 """FastAPI server for the Dad IT Support Agent."""
 
 import logging
+from contextlib import asynccontextmanager
 
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 
-from .env import CLIENT_DIST, env
+from .env import CLIENT_DIST, env, is_langfuse_configured
 from .support_agent import ChatRequest, ChatResponse, run_support_conversation
 from .support_data import DEFAULT_SUPPORT_CONTEXT
+from .tracing import init_tracing, shutdown_tracing
 
 logger = logging.getLogger("dad-it-support")
 
-app = FastAPI(title="Dad IT Support Agent")
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    init_tracing()
+    yield
+    shutdown_tracing()
+
+
+app = FastAPI(title="Dad IT Support Agent", lifespan=lifespan)
 
 
 @app.exception_handler(RequestValidationError)
@@ -24,7 +35,7 @@ async def validation_error_handler(_request: Request, error: RequestValidationEr
 
 @app.get("/api/health")
 def health() -> dict:
-    return {"ok": True, "provider": "openai", "tracingConfigured": False}
+    return {"ok": True, "provider": "openai", "tracingConfigured": is_langfuse_configured()}
 
 
 @app.get("/api/support-context")

@@ -3,7 +3,8 @@
 import json
 from typing import Any, Literal
 
-from openai import OpenAI
+from langfuse import get_client, observe, propagate_attributes
+from langfuse.openai import OpenAI
 from openai.types.chat import ChatCompletionMessage
 from pydantic import BaseModel, Field
 
@@ -88,7 +89,7 @@ def _to_assistant_message(message: ChatCompletionMessage) -> dict[str, Any]:
     return assistant
 
 
-def run_support_conversation(request: ChatRequest) -> ChatResponse:
+def _run_support_conversation_inner(request: ChatRequest) -> ChatResponse:
     context = get_support_context()
     # base_url=None when OPENAI_BASE_URL is unset, so the OpenAI default endpoint is used.
     client = OpenAI(
@@ -153,3 +154,25 @@ def run_support_conversation(request: ChatRequest) -> ChatResponse:
             model=env.openai_model,
         ),
     )
+
+
+TRACE_NAME = "dad-it-support-chat-turn"
+TRACE_TAGS = ["langfuse-workshop", "dad-it-support"]
+
+
+@observe(name=TRACE_NAME, as_type="agent", capture_input=False, capture_output=False)
+def run_support_conversation(request: ChatRequest) -> ChatResponse:
+    langfuse = get_client()
+    langfuse.update_current_span(input=request.model_dump(exclude_none=True))
+
+    context = get_support_context()
+    with propagate_attributes(
+        user_id=request.userId or f"workshop-{context['id']}",
+        session_id=request.sessionId,
+        trace_name=TRACE_NAME,
+        tags=TRACE_TAGS,
+    ):
+        response = _run_support_conversation_inner(request)
+
+    langfuse.update_current_span(output=response.model_dump())
+    return response
